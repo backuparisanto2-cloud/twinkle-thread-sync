@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DenahRouteImport } from './routes/denah'
 import { Route as FasilitasRouteImport } from './routes/fasilitas'
+import { Route as JurnalRouteImport } from './routes/jurnal'
 import { Route as KelolaRouteImport } from './routes/kelola'
 import { Route as LaporanRouteImport } from './routes/laporan'
 import { Route as PendapatanRouteImport } from './routes/pendapatan'
@@ -33,6 +34,11 @@ const DenahRoute = DenahRouteImport.update({
 const FasilitasRoute = FasilitasRouteImport.update({
   id: '/fasilitas',
   path: '/fasilitas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JurnalRoute = JurnalRouteImport.update({
+  id: '/jurnal',
+  path: '/jurnal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KelolaRoute = KelolaRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/denah': typeof DenahRoute
   '/fasilitas': typeof FasilitasRoute
+  '/jurnal': typeof JurnalRoute
   '/kelola': typeof KelolaRoute
   '/laporan': typeof LaporanRoute
   '/pendapatan': typeof PendapatanRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/denah': typeof DenahRoute
   '/fasilitas': typeof FasilitasRoute
+  '/jurnal': typeof JurnalRoute
   '/kelola': typeof KelolaRoute
   '/laporan': typeof LaporanRoute
   '/pendapatan': typeof PendapatanRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/denah': typeof DenahRoute
   '/fasilitas': typeof FasilitasRoute
+  '/jurnal': typeof JurnalRoute
   '/kelola': typeof KelolaRoute
   '/laporan': typeof LaporanRoute
   '/pendapatan': typeof PendapatanRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/denah'
     | '/fasilitas'
+    | '/jurnal'
     | '/kelola'
     | '/laporan'
     | '/pendapatan'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/denah'
     | '/fasilitas'
+    | '/jurnal'
     | '/kelola'
     | '/laporan'
     | '/pendapatan'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/denah'
     | '/fasilitas'
+    | '/jurnal'
     | '/kelola'
     | '/laporan'
     | '/pendapatan'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DenahRoute: typeof DenahRoute
   FasilitasRoute: typeof FasilitasRoute
+  JurnalRoute: typeof JurnalRoute
   KelolaRoute: typeof KelolaRoute
   LaporanRoute: typeof LaporanRoute
   PendapatanRoute: typeof PendapatanRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/fasilitas'
       fullPath: '/fasilitas'
       preLoaderRoute: typeof FasilitasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jurnal': {
+      id: '/jurnal'
+      path: '/jurnal'
+      fullPath: '/jurnal'
+      preLoaderRoute: typeof JurnalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kelola': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DenahRoute: DenahRoute,
   FasilitasRoute: FasilitasRoute,
+  JurnalRoute: JurnalRoute,
   KelolaRoute: KelolaRoute,
   LaporanRoute: LaporanRoute,
   PendapatanRoute: PendapatanRoute,

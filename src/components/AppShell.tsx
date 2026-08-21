@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
+  BookOpen,
   LayoutDashboard,
   DoorClosed,
   Wrench,
@@ -35,7 +36,9 @@ const nav = [
   { to: "/tenant", label: "Tenant & Pembayaran", icon: Users },
   { to: "/pendapatan", label: "Pendapatan", icon: Coins },
   { to: "/pengeluaran", label: "Pengeluaran", icon: Wallet },
+  { to: "/jurnal", label: "Jurnal Umum", icon: BookOpen },
   { to: "/kelola", label: "Kelola Data", icon: Settings },
+
   { to: "/laporan", label: "Laporan", icon: FileBarChart },
 
 
