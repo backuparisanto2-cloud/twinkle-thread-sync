@@ -12,6 +12,10 @@ import {
   roomsQuery,
   sharedItemsQuery,
 } from "@/lib/inventory";
+import { expensesQuery } from "@/lib/expenses";
+import { incomesQuery, otherIncomesQuery } from "@/lib/income";
+import { buildJournal, journalTotals } from "@/lib/journal";
+
 
 
 export const Route = createFileRoute("/")({
