@@ -319,13 +319,14 @@ function JournalPage() {
             </div>
           </div>
           <div className="flex items-end gap-2">
-            <Button type="button" variant="outline" onClick={handleExcel} className="flex-1">
-              <FileSpreadsheet className="mr-2 h-4 w-4" /> Excel
+            <Button type="button" onClick={() => setExportOpen(true)} className="flex-1">
+              <FileSpreadsheet className="mr-2 h-4 w-4" /> Ekspor Jurnal
             </Button>
             <Button type="button" variant="outline" onClick={handlePdf} className="flex-1">
-              <FileDown className="mr-2 h-4 w-4" /> PDF
+              <FileDown className="mr-2 h-4 w-4" /> PDF Cepat
             </Button>
           </div>
+
         </div>
       </div>
 
