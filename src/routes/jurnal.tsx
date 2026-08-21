@@ -5,6 +5,8 @@ import { ArrowDownCircle, ArrowUpCircle, FileDown, FileSpreadsheet, Search, Wall
 
 import { AppShell } from "@/components/AppShell";
 import { SignedImage } from "@/components/SignedImage";
+import { JournalExportDialog } from "@/components/JournalExportDialog";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
