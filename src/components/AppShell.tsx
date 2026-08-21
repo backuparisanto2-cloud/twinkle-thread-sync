@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
+  BookOpen,
   LayoutDashboard,
   DoorClosed,
   Wrench,
