@@ -92,6 +92,8 @@ function JournalPage() {
   const [category, setCategory] = useState("Semua");
   const [keyword, setKeyword] = useState("");
   const [detail, setDetail] = useState<JournalEntry | null>(null);
+  const [exportOpen, setExportOpen] = useState(false);
+
 
   const all = useMemo(
     () => buildJournal(incomes.data ?? [], others.data ?? [], expenses.data ?? []),
