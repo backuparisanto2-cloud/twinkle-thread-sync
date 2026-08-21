@@ -5,6 +5,8 @@ import { ArrowDownCircle, ArrowUpCircle, FileDown, FileSpreadsheet, Search, Wall
 
 import { AppShell } from "@/components/AppShell";
 import { SignedImage } from "@/components/SignedImage";
+import { JournalExportDialog } from "@/components/JournalExportDialog";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -92,6 +94,8 @@ function JournalPage() {
   const [category, setCategory] = useState("Semua");
   const [keyword, setKeyword] = useState("");
   const [detail, setDetail] = useState<JournalEntry | null>(null);
+  const [exportOpen, setExportOpen] = useState(false);
+
 
   const all = useMemo(
     () => buildJournal(incomes.data ?? [], others.data ?? [], expenses.data ?? []),
@@ -181,25 +185,8 @@ function JournalPage() {
     );
   };
 
-  const handleExcel = async () => {
-    const XLSX = await import("xlsx");
-    const aoa: (string | number)[][] = [
-      ["Jurnal Umum — Lavin Kost Purwokerto"],
-      [`Periode: ${periodLabel}`],
-      [],
-      ["Total Pendapatan", totals.pendapatan],
-      ["Total Pengeluaran", totals.pengeluaran],
-      ["Saldo", totals.saldo],
-      [],
-      ["Tanggal", "Keterangan", "Jenis", "Kategori", "Metode/Lokasi", "Pendapatan", "Pengeluaran"],
-      ...exportRows(),
-    ];
-    const sheet = XLSX.utils.aoa_to_sheet(aoa);
-    sheet["!cols"] = [{ wch: 16 }, { wch: 40 }, { wch: 14 }, { wch: 20 }, { wch: 20 }, { wch: 16 }, { wch: 16 }];
-    const book = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, sheet, "Jurnal Umum");
-    XLSX.writeFile(book, "jurnal-umum.xlsx");
-  };
+
+
 
   const loading = incomes.isLoading || others.isLoading || expenses.isLoading;
 
@@ -319,13 +306,14 @@ function JournalPage() {
             </div>
           </div>
           <div className="flex items-end gap-2">
-            <Button type="button" variant="outline" onClick={handleExcel} className="flex-1">
-              <FileSpreadsheet className="mr-2 h-4 w-4" /> Excel
+            <Button type="button" onClick={() => setExportOpen(true)} className="flex-1">
+              <FileSpreadsheet className="mr-2 h-4 w-4" /> Ekspor Jurnal
             </Button>
             <Button type="button" variant="outline" onClick={handlePdf} className="flex-1">
-              <FileDown className="mr-2 h-4 w-4" /> PDF
+              <FileDown className="mr-2 h-4 w-4" /> PDF Cepat
             </Button>
           </div>
+
         </div>
       </div>
 
@@ -501,6 +489,15 @@ function JournalPage() {
           ) : null}
         </DialogContent>
       </Dialog>
+
+      <JournalExportDialog
+        open={exportOpen}
+        onOpenChange={setExportOpen}
+        entries={all}
+        initialFrom={from}
+        initialTo={to}
+      />
+
     </AppShell>
   );
 }
