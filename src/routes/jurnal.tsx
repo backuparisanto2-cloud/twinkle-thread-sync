@@ -183,25 +183,8 @@ function JournalPage() {
     );
   };
 
-  const handleExcel = async () => {
-    const XLSX = await import("xlsx");
-    const aoa: (string | number)[][] = [
-      ["Jurnal Umum — Lavin Kost Purwokerto"],
-      [`Periode: ${periodLabel}`],
-      [],
-      ["Total Pendapatan", totals.pendapatan],
-      ["Total Pengeluaran", totals.pengeluaran],
-      ["Saldo", totals.saldo],
-      [],
-      ["Tanggal", "Keterangan", "Jenis", "Kategori", "Metode/Lokasi", "Pendapatan", "Pengeluaran"],
-      ...exportRows(),
-    ];
-    const sheet = XLSX.utils.aoa_to_sheet(aoa);
-    sheet["!cols"] = [{ wch: 16 }, { wch: 40 }, { wch: 14 }, { wch: 20 }, { wch: 20 }, { wch: 16 }, { wch: 16 }];
-    const book = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, sheet, "Jurnal Umum");
-    XLSX.writeFile(book, "jurnal-umum.xlsx");
-  };
+
+
 
   const loading = incomes.isLoading || others.isLoading || expenses.isLoading;
 
