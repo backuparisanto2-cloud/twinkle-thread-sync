@@ -489,6 +489,15 @@ function JournalPage() {
           ) : null}
         </DialogContent>
       </Dialog>
+
+      <JournalExportDialog
+        open={exportOpen}
+        onOpenChange={setExportOpen}
+        entries={all}
+        initialFrom={from}
+        initialTo={to}
+      />
+
     </AppShell>
   );
 }
