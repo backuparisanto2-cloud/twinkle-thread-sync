@@ -156,6 +156,44 @@ function Dashboard() {
 
       <ExpenseSummary />
 
+      <div className="gold-card mt-6 rounded-xl p-5">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="font-display text-xl font-semibold">Jurnal Umum</h2>
+          <Link to="/jurnal" className="text-sm text-gold hover:underline">
+            Lihat jurnal lengkap
+          </Link>
+        </div>
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="rounded-lg border border-gold-line px-4 py-3">
+            <p className="text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
+              Pendapatan
+            </p>
+            <p className="mt-1 font-display text-xl font-semibold text-success">
+              {formatRupiah(jurnal.pendapatan)}
+            </p>
+          </div>
+          <div className="rounded-lg border border-gold-line px-4 py-3">
+            <p className="text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
+              Pengeluaran
+            </p>
+            <p className="mt-1 font-display text-xl font-semibold text-destructive">
+              {formatRupiah(jurnal.pengeluaran)}
+            </p>
+          </div>
+          <div className="rounded-lg border border-gold-line px-4 py-3">
+            <p className="text-[11px] tracking-[0.14em] text-muted-foreground uppercase">Saldo</p>
+            <p
+              className={`mt-1 font-display text-xl font-semibold ${
+                jurnal.saldo < 0 ? "text-destructive" : "text-foreground"
+              }`}
+            >
+              {formatRupiah(jurnal.saldo)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="gold-card rounded-xl p-5">
           <h2 className="font-display text-xl font-semibold">Akses Cepat</h2>
