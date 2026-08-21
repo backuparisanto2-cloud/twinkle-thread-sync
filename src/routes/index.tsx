@@ -66,6 +66,14 @@ function Dashboard() {
   const items = useQuery(allRoomItemsQuery);
   const shared = useQuery(sharedItemsQuery);
   const conditions = useQuery(conditionsQuery);
+  const incomes = useQuery(incomesQuery);
+  const otherIncomes = useQuery(otherIncomesQuery);
+  const expenses = useQuery(expensesQuery);
+
+  const jurnal = journalTotals(
+    buildJournal(incomes.data ?? [], otherIncomes.data ?? [], expenses.data ?? []),
+  );
+
 
   const roomItems = items.data ?? [];
   const sharedItems = shared.data ?? [];
